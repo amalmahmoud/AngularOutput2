@@ -1,0 +1,30 @@
+<app-search (searchTextChanged)="onTextChange($event)"></app-search>
+
+<app-filter [Courses]="getTotalCourses()" [Movies]="getTotalMovies()"
+    (filterRadioButtonSelectionChanged)="onFilterRadioButtonChanged($event)"></app-filter>
+<ng-container *ngFor="let data of getType()" >
+    <!-- courseCountRadioButton === 'All' || courseCountRadioButton === course.type -->
+    <div class="  d-inline-flex  align-items-stretch ">
+    <div class="type-container">
+        <div class="type-card p-2">
+            <div>
+                <img [src]="data.image" style="width:220px; height:140px;">
+            </div>
+            <div class="type-name">
+                <h4>{{ data.name}}</h4>
+            </div>
+            <div class="type-description">
+                <p>{{data.description.slice(0, 80)}}...</p>
+            </div>
+            <div class="details">
+                <div class="type-type">{{data.type}} </div>
+                <div class="type-price"><b>Price:</b> ${{data.price}}</div>
+            </div>
+            <div class="type-buttons">
+                <button class="btn btn-buy" [appButtonsBackground]="courseCountRadioButton">Buy Now</button>
+                <button class="btn btn-show" [appButtonsBackground]="courseCountRadioButton">Show</button>
+            </div>
+        </div>
+        </div>
+    </div>
+</ng-container>
